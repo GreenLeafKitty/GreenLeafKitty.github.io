@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿叶喵的个人介绍</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fcf8;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #f8fcf8, #e8f5e8);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        .avatar-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid #c1e6c1;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);
+            transition: transform 0.5s ease;
+        }
+        
+        .avatar-container:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .avatar-container:hover .avatar {
+            transform: scale(1.1);
+        }
+        
+        h1 {
+            color: #2e7d32;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, #a5d6a7, #2e7d32);
+            border-radius: 2px;
+        }
+        
+        .tagline {
+            color: #66bb6a;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0f2e0;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #388e3c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f5e9;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            color: #4caf50;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        li:before {
+            content: '🍃';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid #c8e6c9;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background-color: #2e7d32;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            color: #4caf50;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #4caf50;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #81c784;
+            font-size: 0.95rem;
+            border-top: 1px solid #e0f2e0;
+        }
+        
+        .cat-emoji {
+            font-size: 1.2rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .leaf-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #a5d6a7;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .leaf-1 { top: 10%; left: 5%; animation: float 6s ease-in-out infinite; }
+        .leaf-2 { top: 15%; right: 8%; animation: float 8s ease-in-out infinite reverse; }
+        .leaf-3 { bottom: 20%; left: 7%; animation: float 7s ease-in-out infinite; }
+        .leaf-4 { bottom: 15%; right: 5%; animation: float 9s ease-in-out infinite reverse; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .avatar-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .leaf-decoration {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            .avatar-container {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="leaf-decoration leaf-1">🍃</div>
+    <div class="leaf-decoration leaf-2">🌿</div>
+    <div class="leaf-decoration leaf-3">🍀</div>
+    <div class="leaf-decoration leaf-4">🌱</div>
+    
+    <div class="container">
+        <header>
+            <div class="avatar-container">
+                <!-- 这里替换为您的头像文件名 -->
+                <img src="IMG_3762598964926879819.jpg" alt="绿叶喵的头像" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6d03bde4ba4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'">
+            </div>
+            <h1>绿叶喵 <span class="cat-emoji">🐱</span></h1>
+            <p class="tagline">自然爱好者 | 代码园丁 | 生活探险家</p>
+        </header>
+        
+        <div class="content">
+            <div class="card">
+                <h2><i class="fas fa-user-circle"></i> 关于我</h2>
+                <p>大家好！我是绿叶喵，一个热爱自然、热爱生活、热爱技术的探索者。就像我的名字一样，我希望自己能像绿叶一样清新自然，像小猫一样充满好奇心。</p>
+                <p>我来自一个美丽的城市，从小就对大自然充满好奇。长大后，我发现技术世界同样充满神奇，于是开始探索编程与设计的奇妙世界。</p>
+                <p>我相信生活就是一场不断学习和成长的旅程，每一片绿叶都有它独特的故事，每一个代码都有它独特的灵魂。</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-heart"></i> 兴趣爱好</h2>
+                <ul>
+                    <li>户外徒步与自然摄影</li>
+                    <li>阅读科幻与奇幻文学作品</li>
+                    <li>研究前端技术与交互设计</li>
+                    <li>种植多肉植物与绿植</li>
+                    <li>尝试各种手工制作与DIY</li>
+                    <li>探索新的咖啡与茶饮</li>
+                </ul>
+                
+                <h2><i class="fas fa-star"></i> 技能特长</h2>
+                <div class="skills">
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">UI/UX设计</span>
+                    <span class="skill-tag">自然摄影</span>
+                    <span class="skill-tag">植物养护</span>
+                    <span class="skill-tag">内容创作</span>
+                    <span class="skill-tag">团队协作</span>
+                    <span class="skill-tag">问题解决</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-link" title="微博">
+                <i class="fab fa-weibo"></i>
+            </a>
+            <a href="#" class="social-link" title="B站">
+                <i class="fab fa-bilibili"></i>
+            </a>
+            <a href="#" class="social-link" title="知乎">
+                <i class="fab fa-zhihu"></i>
+            </a>
+            <a href="#" class="social-link" title="邮箱">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        
+        <footer>
+            <p>© 2023 绿叶喵 | 保持好奇，像猫一样探索世界 🍃🐾</p>
+            <p>联系我: greenleaf.cat@example.com</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatar = document.querySelector('.avatar-container');
+            const cards = document.querySelectorAll('.card');
+            
+            // 头像点击效果
+            avatar.addEventListener('click', function() {
+                this.style.transform = 'rotate(15deg) scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 500);
+            });
+            
+            // 卡片入场动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // 技能标签点击效果
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
