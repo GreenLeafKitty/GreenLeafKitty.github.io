@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿叶喵／绿叶猫meme | 动漫博主×猫meme微电影创作者</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700&display=swap">
+    <style>
+        :root {
+            --anime-pink: #ff6bcb;
+            --anime-blue: #6bcbff;
+            --anime-yellow: #ffcc00;
+            --anime-green: #2ecc71;
+            --anime-purple: #9b59b6;
+            --background-light: #fef6ff;
+            --text-dark: #333344;
+            --card-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 203, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(107, 203, 255, 0.1) 0%, transparent 20%);
+        }
+        
+        .anime-font {
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 顶部装饰条 */
+        .top-decoration {
+            height: 10px;
+            background: linear-gradient(to right, var(--anime-pink), var(--anime-blue), var(--anime-yellow), var(--anime-green), var(--anime-purple));
+            border-radius: 0 0 5px 5px;
+        }
+        
+        /* 头部区域 */
+        header {
+            padding: 40px 0 30px;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .avatar-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.15),
+                0 0 0 8px var(--anime-pink),
+                0 0 0 12px var(--anime-blue),
+                0 0 0 16px var(--anime-yellow);
+            transform: rotate(-5deg);
+            transition: transform 0.5s ease;
+            flex-shrink: 0;
+        }
+        
+        .avatar-container:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .name-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--anime-pink), var(--anime-purple));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+            transform: rotate(-2deg);
+            animation: bounce 3s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: rotate(-2deg) translateY(0); }
+            50% { transform: rotate(-2deg) translateY(-5px); }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--anime-blue);
+            font-weight: 700;
+        }
+        
+        .hashtag {
+            display: inline-block;
+            background-color: var(--anime-yellow);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 8px rgba(255, 204, 0, 0.3);
+        }
+        
+        .follower-count {
+            display: inline-flex;
+            align-items: center;
+            background-color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px dashed var(--anime-green);
+        }
+        
+        .follower-count i {
+            color: var(--anime-green);
+            margin-right: 8px;
+        }
+        
+        /* 简介卡片 */
+        .intro-card {
+            background-color: var(--card-white);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-left: 10px solid var(--anime-pink);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro-card:before {
+            content: "「原创声明」";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: var(--anime-pink);
+            font-weight: 700;
+            transform: rotate(10deg);
+        }
+        
+        .intro-title {
+            color: var(--anime-purple);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .intro-title i {
+            margin-right: 10px;
+            color: var(--anime-yellow);
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .intro-text .highlight {
+            color: var(--anime-pink);
+            font-weight: 700;
+        }
+        
+        .signature {
+            text-align: right;
+            font-size: 1.3rem;
+            color: var(--anime-blue);
+            margin-top: 20px;
+            font-weight: 700;
+        }
+        
+        .signature span {
+            color: var(--anime-green);
+        }
+        
+        /* 内容展示区 */
+        .content-showcase {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--anime-purple);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--anime-pink), var(--anime-blue));
+            border-radius: 3px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .content-type {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--anime-yellow);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        
+        .content-thumbnail {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .content-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-card:hover .content-thumbnail img {
+            transform: scale(1.1);
+        }
+        
+        .content-info {
+            padding: 20px;
+        }
+        
+        .content-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--anime-purple);
+        }
+        
+        .content-desc {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .content-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--anime-blue);
+            font-weight: 600;
+        }
+        
+        /* 关注按钮 */
+        .follow-section {
+            text-align: center;
+            padding: 50px 0;
+            background-color: rgba(107, 203, 255, 0.1);
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .follow-section:before {
+            content: "🐱";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+        }
+        
+        .follow-section:after {
+            content: "😸";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+        
+        .follow-title {
+            font-size: 2rem;
+            color: var(--anime-pink);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .follow-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--anime-pink), var(--anime-purple));
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(255, 107, 203, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .follow-btn:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 35px rgba(255, 107, 203, 0.6);
+        }
+        
+        .follow-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .oh-yeah {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--anime-yellow);
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 社交链接 */
+        .social-section {
+            padding: 40px 0;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .platform-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--anime-green);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .bilibili .platform-icon { color: #fb7299; }
+        .douyin .platform-icon { color: #000000; }
+        .weibo .platform-icon { color: #e6162d; }
+        .youtube .platform-icon { color: #ff0000; }
+        
+        .platform-name {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .platform-id {
+            color: var(--text-dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* 底部 */
+        footer {
+            background: linear-gradient(135deg, var(--anime-purple), #6c3483);
+            color: white;
+            padding: 40px 0 20px;
+            border-radius: 20px 20px 0 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-text {
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar-container {
+                margin: 0 auto;
+            }
+            
+            .name-badge {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .avatar-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .name-badge {
+                font-size: 1.3rem;
+            }
+            
+            .follow-title {
+                font-size: 1.6rem;
+            }
+            
+            .follow-btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* 猫爪光标 */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%239b59b6" d="M14 4c-1.1 0-2 .9-2 2v6H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8v6c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-8v-6c0-1.1-.9-2-2-2h-8z"/><circle fill="%23ffffff" cx="9" cy="11" r="2"/><circle fill="%23ffffff" cx="23" cy="21" r="2"/></svg>'), auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-decoration"></div>
+    
+    <div class="container">
+        <!-- 头部区域 -->
+        <header>
+            <div class="header-content">
+                <div class="avatar-container">
+                    <!-- 替换为您的头像文件 -->
+                    <img src="IMG_3762598964926879819.jpg" alt="绿叶喵的头像" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                </div>
+                
+                <div class="title-section">
+                    <div class="name-badge anime-font">
+                        <i class="fas fa-paw"></i> 绿叶喵／绿叶猫meme
+                    </div>
+                    
+                    <div class="tagline">
+                        🅥动漫博主 × 猫meme微电影或小剧场
+                    </div>
+                    
+                    <div>
+                        <span class="hashtag">#诚实守信</span>
+                        <span class="hashtag">#坚持原创</span>
+                        <span class="hashtag">#请勿搬运</span>
+                        <span class="hashtag">#专做猫meme</span>
+                    </div>
+                    
+                    <p style="margin: 15px 0; font-size: 1.1rem;">
+                        现在关注，以后就是老粉了！
+                    </p>
+                    
+                    <div class="follower-count">
+                        <i class="fas fa-users"></i> 粉丝数 0.01万
+                    </div>
+                    
+                    <p style="margin-top: 15px; color: var(--anime-pink); font-weight: 600;">
+                        <i class="fas fa-heart"></i> 粉丝们要天天开心哦[调皮]
+                    </p>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 简介卡片 -->
+        <div class="intro-card">
+            <h2 class="intro-title">
+                <i class="fas fa-cat"></i> 你好，我是绿叶喵，认识一下吧
+            </h2>
+            
+            <div class="intro-text">
+                <p>我是专注于<strong class="highlight">猫meme微电影和小剧场</strong>创作的动漫博主！用猫咪的可爱形象和幽默表情，讲述生活中的小故事、小情绪，以及那些让人会心一笑的瞬间。</p>
+                
+                <p>我的创作理念是<strong class="highlight">诚实守信，坚持原创</strong>，每一个猫meme都经过精心设计和制作，拒绝搬运，只做最原汁原味的猫meme内容！</p>
+                
+                <p>如果你也喜欢猫咪，喜欢轻松幽默的短视频，那么你找对地方了！在这里，你可以看到各种猫咪化身成动漫角色，演绎各种有趣的故事。</p>
+                
+                <p><strong class="highlight">可以给我个关注吗？</strong> 你的每一个关注都是我继续创作的动力！</p>
+            </div>
+            
+            <div class="signature">
+                全网通用名字：<span>绿叶喵／绿叶猫meme</span>
+            </div>
+        </div>
+        
+        <!-- 内容展示区 -->
+        <section class="content-showcase">
+            <h2 class="section-title anime-font">我的猫meme作品</h2>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-type">微电影</div>
+                    <div class="content-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫meme微电影封面">
+                    </div>
+                    <div class="content-info">
+                        <div class="content-title">《猫主子的打工日常》</div>
+                        <div class="content-desc">猫咪化身打工人，演绎上班族的酸甜苦辣，看看猫主子是怎么应对KPI的！</div>
+                        <div class="content-stats">
+                            <span><i class="far fa-eye"></i> 2.5万观看</span>
+                            <span><i class="far fa-heart"></i> 1.2万点赞</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <div class="content-type">小剧场</div>
+                    <div class="content-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫meme小剧场封面">
+                    </div>
+                    <div class="content-info">
+                        <div class="content-title">《当猫咪学会网购后》</div>
+                        <div class="content-desc">猫咪沉迷网购，快递堆成山，看看铲屎官如何应对这场"猫灾"！</div>
+                        <div class="content-stats">
+                            <span><i class="far fa-eye"></i> 3.1万观看</span>
+                            <span><i class="far fa-heart"></i> 1.8万点赞</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <div class="content-type">动漫系列</div>
+                    <div class="content-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫meme动漫系列封面">
+                    </div>
+                    <div class="content-info">
+                        <div class="content-title">《猫武士的日常训练》</div>
+                        <div class="content-desc">猫咪化身武士，进行日常训练，看看它们是怎么练习"忍术"的！</div>
+                        <div class="content-stats">
+                            <span><i class="far fa-eye"></i> 4.2万观看</span>
+                            <span><i class="far fa-heart"></i> 2.3万点赞</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 关注区域 -->
+        <section class="follow-section">
+            <h2 class="follow-title anime-font">现在关注，以后就是老粉了！</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; position: relative; z-index: 2;">
+                点击下方按钮，关注我的频道，不错过任何一只猫meme的精彩演出！
+            </p>
+            
+            <button class="follow-btn anime-font" id="followBtn">
+                <i class="fas fa-plus-circle"></i> 关注绿叶喵
+            </button>
+            
+            <div class="oh-yeah anime-font">oh~耶 ✨</div>
+        </section>
+        
+        <!-- 社交平台 -->
+        <section class="social-section">
+            <h2 class="section-title anime-font">全网平台</h2>
+            <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
+                全网通用名字：<strong>绿叶喵／绿叶猫meme</strong>
+            </p>
+            
+            <div class="platform-grid">
+                <div class="platform-card bilibili">
+                    <div class="platform-icon">
+                        <i class="fab fa-bilibili"></i>
+                    </div>
+                    <div class="platform-name">Bilibili</div>
+                    <div class="platform-id">@绿叶猫meme</div>
+                </div>
+                
+                <div class="platform-card douyin">
+                    <div class="platform-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="platform-name">抖音</div>
+                    <div class="platform-id">@绿叶喵</div>
+                </div>
+                
+                <div class="platform-card weibo">
+                    <div class="platform-icon">
+                        <i class="fab fa-weibo"></i>
+                    </div>
+                    <div class="platform-name">微博</div>
+                    <div class="platform-id">@绿叶猫meme</div>
+                </div>
+                
+                <div class="platform-card youtube">
+                    <div class="platform-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="platform-name">YouTube</div>
+                    <div class="platform-id">@GreenLeafCatMeme</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cat"></i> 绿叶喵
+                </div>
+                <div class="footer-text">
+                    动漫博主 × 猫meme微电影或小剧场<br>
+                    诚实守信 · 坚持原创 · 请勿搬运
+                </div>
+                <div class="copyright">
+                    © 2023 绿叶喵／绿叶猫meme | 专做猫meme | 粉丝们要天天开心哦
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 关注按钮交互效果
+            const followBtn = document.getElementById('followBtn');
+            let isFollowing = false;
+            let followerCount = 100; // 0.01万 = 100
+            
+            followBtn.addEventListener('click', function() {
+                if (!isFollowing) {
+                    // 关注成功
+                    followerCount += 1;
+                    this.innerHTML = '<i class="fas fa-check"></i> 已关注';
+                    this.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+                    
+                    // 显示关注成功消息
+                    alert(`关注成功！感谢你的支持！\n\n你是第 ${followerCount} 位粉丝，现在你是老粉了！\n\n粉丝们要天天开心哦~ 😸`);
+                    
+                    // 更新粉丝数显示
+                    document.querySelector('.follower-count').innerHTML = 
+                        `<i class="fas fa-users"></i> 粉丝数 ${(followerCount/10000).toFixed(2)}万`;
+                    
+                    isFollowing = true;
+                    
+                    // 添加庆祝效果
+                    const celebration = document.createElement('div');
+                    celebration.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        pointer-events: none;
+                        z-index: 9999;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    `;
+                    celebration.innerHTML = `
+                        <div style="
+                            background: rgba(0,0,0,0.7);
+                            color: white;
+                            padding: 20px 40px;
+                            border-radius: 15px;
+                            font-size: 1.5rem;
+                            animation: fadeOut 2s forwards;
+                        ">
+                            <i class="fas fa-star"></i> 关注成功！谢谢喵~
+                        </div>
+                    `;
+                    document.body.appendChild(celebration);
+                    
+                    // 3秒后移除庆祝效果
+                    setTimeout(() => {
+                        document.body.removeChild(celebration);
+                    }, 2000);
+                } else {
+                    alert('你已经关注过啦！谢谢支持！😽');
+                }
+            });
+            
+            // 内容卡片点击效果
+            const contentCards = document.querySelectorAll('.content-card');
+            contentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.content-title').textContent;
+                    const type = this.querySelector('.content-type').textContent;
+                    
+                    // 模拟打开视频播放页
+                    alert(`即将播放：${title}\n\n类型：${type}\n\n提示：这是一个示例页面，实际网站中这里会嵌入视频播放器。`);
+                });
+            });
+            
+            // 添加漂浮表情效果
+            const floatingEmojis = ['😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🐱'];
+            function createFloatingEmoji() {
+                if (Math.random() > 0.3) return; // 控制生成频率
+                
+                const emoji = document.createElement('div');
+                emoji.textContent = floatingEmojis[Math.floor(Math.random() * floatingEmojis.length)];
+                emoji.style.cssText = `
+                    position: fixed;
+                    font-size: ${Math.random() * 20 + 20}px;
+                    left: ${Math.random() * 100}%;
+                    top: 100%;
+                    z-index: 1;
+                    pointer-events: none;
+                    opacity: ${Math.random() * 0.5 + 0.3};
+                    animation: floatUp ${Math.random() * 10 + 10}s linear forwards;
+                `;
+                
+                document.body.appendChild(emoji);
+                
+                // 动画结束后移除元素
+                setTimeout(() => {
+                    if (emoji.parentNode) {
+                        emoji.parentNode.removeChild(emoji);
+                    }
+                }, 15000);
+            }
+            
+            // 添加漂浮动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatUp {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                    }
+                    100% {
+                        transform: translateY(-100vh) rotate(360deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // 定期生成漂浮表情
+            setInterval(createFloatingEmoji, 1500);
+            
+            // 页面加载时生成一些初始表情
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createFloatingEmoji, i * 300);
+            }
+        });
+    </script>
+</body>
+</html>
